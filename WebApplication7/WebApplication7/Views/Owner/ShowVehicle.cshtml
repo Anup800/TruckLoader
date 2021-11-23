@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication7.Models.Vehicle>
+
+@{
+    ViewBag.Title = "ShowVehicle";
+}
+
+<h2>ShowVehicle</h2>
+
+<p>
+    @Html.ActionLink("Add Vehicle","AddVehicle","Owner")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Vsize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vfacility)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vsize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vfacility)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Vno }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Vno }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Vno })
+        </td>
+    </tr>
+}
+
+</table>

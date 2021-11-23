@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Bid" />
+    </Key>
+    <Property Name="Bid" Type="int" Nullable="false" />
+    <Property Name="Bfrom" Type="varchar" MaxLength="20" />
+    <Property Name="Bto" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Bcid" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Bvno" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Bdate" Type="date" Nullable="false" />
+    <Property Name="price" Type="int" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cname" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cpassword" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Ccontact" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="location" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="distance" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="Oid" />
+    </Key>
+    <Property Name="Oname" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Oid" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Opassword" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Ocontact" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="Vno" />
+    </Key>
+    <Property Name="Vno" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Vsize" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Vfacility" Type="varchar" MaxLength="10" />
+    <Property Name="Void" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Occupied" Type="bit" />
+    <Property Name="Rate" Type="int" />
+  </EntityType>
+  <Association Name="FK__Booking__Bcid__24927208">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Cid" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Bcid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__Bvno__25869641">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Vno" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Bvno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vehicle__Void__21B6055D">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="Oid" />
+      </Principal>
+      <Dependent Role="Vehicle">
+        <PropertyRef Name="Void" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinalModelStoreContainer">
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Booking__Bcid__24927208" Association="Self.FK__Booking__Bcid__24927208">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__Bvno__25869641" Association="Self.FK__Booking__Bvno__25869641">
+      <End Role="Vehicle" EntitySet="Vehicle" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vehicle__Void__21B6055D" Association="Self.FK__Vehicle__Void__21B6055D">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="Vehicle" EntitySet="Vehicle" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

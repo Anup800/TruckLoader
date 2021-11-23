@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinalModelStoreContainer" CdmEntityContainer="FinalEnteties">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="FinalModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Cid" ColumnName="Cid" />
+          <ScalarProperty Name="Cname" ColumnName="Cname" />
+          <ScalarProperty Name="Cpassword" ColumnName="Cpassword" />
+          <ScalarProperty Name="Ccontact" ColumnName="Ccontact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Owners">
+      <EntityTypeMapping TypeName="FinalModel.Owner">
+        <MappingFragment StoreEntitySet="Owner">
+          <ScalarProperty Name="Oname" ColumnName="Oname" />
+          <ScalarProperty Name="Oid" ColumnName="Oid" />
+          <ScalarProperty Name="Opassword" ColumnName="Opassword" />
+          <ScalarProperty Name="Ocontact" ColumnName="Ocontact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehicles">
+      <EntityTypeMapping TypeName="FinalModel.Vehicle">
+        <MappingFragment StoreEntitySet="Vehicle">
+          <ScalarProperty Name="Vno" ColumnName="Vno" />
+          <ScalarProperty Name="Vsize" ColumnName="Vsize" />
+          <ScalarProperty Name="Vfacility" ColumnName="Vfacility" />
+          <ScalarProperty Name="Void" ColumnName="Void" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="FinalModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="Bdate" ColumnName="Bdate" />
+          <ScalarProperty Name="Bvno" ColumnName="Bvno" />
+          <ScalarProperty Name="Bcid" ColumnName="Bcid" />
+          <ScalarProperty Name="Bto" ColumnName="Bto" />
+          <ScalarProperty Name="Bfrom" ColumnName="Bfrom" />
+          <ScalarProperty Name="Bid" ColumnName="Bid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,66 @@
+﻿@model WebApplication7.viewmodel.BookingViewmodel
+@{
+    ViewBag.Title = "update";
+}
+
+<h2>update</h2>
+<table class="table" align="right">
+    <tr>
+        <th>
+            @Html.DisplayName("Vehicle No")
+        </th>
+        <th>
+            @Html.DisplayName("Vehicle Size")
+        </th>
+
+        <th>
+            @Html.DisplayName("Vehicle Type")
+        </th>
+        <th>
+            @Html.DisplayName("Rate/km")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Vehicles)
+    {
+        if (item.Occupied == false)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vsize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vfacility)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+
+            </tr>
+        }
+    }
+    </table>
+
+
+    @using (Html.BeginForm("saveupdate", "Owner"))
+    {
+        @Html.AntiForgeryToken()
+
+   
+<div class="form-group">
+    @Html.LabelFor(model => model.Booking.Bvno, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.Booking.Bvno, new SelectList(Model.Vehicles, "Vno", "Vno"), "Select vehicle No", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Booking.Bvno, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-default" />
+
+    </div>
+</div>
+    }
